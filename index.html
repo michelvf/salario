@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-<html class="h-100" lang="en">
+<html class="h-100" lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Michel Vega Fuenzalida michelvf@nauta.cu">
     <title>Cálculo de Salario</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- link rel="stylesheet" href="css/fontawesome.min.css" -->
+    <link rel="stylesheet" href="fonts/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         main > .container {
           padding: 60px 15px 0;
         }
     </style>
+    <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script>
+          $( function() {
+            $( "#datepicker" ).datepicker({
+                 monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+                 dateFormat: "yy-mm",
+                 //changeMonth: true,
+                 //changeYear: true,
+                 monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dic" ],
+                 dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+                 firstDay: 1,
+            });
+          });
+    </script>
 </head>
 <body class="d-flex flex-column h-100">
     <div class="container">
@@ -31,12 +50,20 @@
             <form>
             <h2>Cálculo Salario</h2>
             <div class="form-row">
-              <div class="form-group col-md-10">
-                  <div class="input-group mb-3">
+              <div class="form-group row">
+                  <div class="input-group mb-3 col">
                       <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                       </div>
                       <input type="number" name="salario" id="salario" class="form-control" placeholder="Escriba el Grupo Escala">
+                  </div>
+                  <div class="input-group mb-3 col">
+                    <input type="month" name="mes" min="2021-01" class="form-control" aria-label="Mes a calcular" aria-describedby="basic-addon2" id="datepicker">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <img src="fonts/calendar2-month.svg" alt="Bootstrap" width="32" height="32">
+                        </span>
+                      </div>
                   </div>
               </div>
             </div>
@@ -72,7 +99,7 @@
             </div>
             <div ><br>
               <input type="button" class="btn btn-primary" onclick="calcularSalario()" value="Calcular">
-              <input type="reset" class="btn btn-outline-primary" value="Limpiar">
+              <input type="reset" class="btn btn-outline-primary" onclick="limpiar()" value="Limpiar">
             </div>
           </form>
 
@@ -81,7 +108,7 @@
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           <p>
-            <h2>Cálculo de la Electricidad<small>(personas naturales)</small></h2>
+            <h2>Cálculo de la Electricidad <small>(personas naturales)</small></h2>
             <form>
               <div class="input-group">
                   <input type="number" name="electricidad" id="electricidad" class="form-control" placeholder="Gasto de electricidad en Kilowatts">
@@ -97,7 +124,7 @@
                   </button>
               </div><br /><br />
               <input type="button" value="Calcular" onclick="calcularElectricidad()" class="btn btn-primary">
-              <input type="reset" value="limpiar" class="btn btn-outline-primary">
+              <input type="reset" value="limpiar" onclick="limpiar()" class="btn btn-outline-primary">
           </form>
 
           </p>
@@ -114,16 +141,21 @@
     </div>
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container text-center">
-            <span class="text-muted">&copy; Derechos reservados a <a class="link-secondary" href="mailto:michelvf@nauta.cu">Nosotros</a>. 2022 </span>
+            <span class="text-muted">&copy; Derechos reservados a <a class="link-secondary" href="mailto:michelvf@nauta.cu">Nosotros</a>. 2022 </span> | 
+            <span>
+                <a class="link-secondary" data-bs-toggle="modal" data-bs-target="#acercaDe">
+                  Acerda de
+                </a>
+            </span>
         </div>
     </footer>
 
 
-  <!-- Modal -->
+  <!-- Modal Grupos escala-->
   <div class="modal fade" id="listadoPreciosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-info bg-opacity-75 text-black">
           <h5 class="modal-title" id="exampleModalLabel">Grupos Escalas Res29/20 MTSS</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -137,10 +169,12 @@
       </div>
     </div>
   </div>
+  
+  <!-- Modal Tarifas de Electricidad -->
   <div class="modal fade" id="tarifasElectricidadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-info bg-opacity-75 text-black">
           <h5 class="modal-title" id="exampleModalLabel">Tarifas cobro electricidad</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -154,11 +188,32 @@
       </div>
     </div>
   </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/sindicato.js"></script>
-    <script src="js/escalasSalariales.js"></script>
-    <script src="js/tarifas-electricidad.js"></script>
-    <script src="js/sabados.js"></script>
-    <script src="js/salario.js"></script>
+  <!-- Modal Acerca De -->
+  <div class="modal fade" id="acercaDe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success bg-opacity-75 text-white">
+        <h5 class="modal-title" id="exampleModalLabel">Acerca de</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Hecho para divertirme después de un curso de JavaScript</p>
+        <p>Se han ido agregando funcionalidades en la medida que me las han pedido</p>
+        <p>Entre ellos el cálculo por los días reales trabajados</p>
+        <p>Agregar fecha para diferentes meses, al principio solo calculaba el mes actual, tomando la fecha de la PC o servidor</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/sindicato.js"></script>
+    <script type="text/javascript" src="js/diasFeriados.js"></script>
+    <script type="text/javascript" src="js/escalasSalariales.js"></script>
+    <script type="text/javascript" src="js/tarifas-electricidad.js"></script>
+    <script type="text/javascript" src="js/sabados.js"></script>
+    <script type="text/javascript" src="js/salario.js"></script>
 </body>
 </html>
