@@ -1,3 +1,17 @@
 .input-group-text {
     font-size: 1.3rem !important;
 }
+.fondo1 {
+    background-image: url('../images/pexels-cottonbro.jpg');
+    /*opacity: 0.5; */
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+.fondo2 {
+    background-image: url('../images/electricity-meter.jpg');
+    /* opacity: 0.5; */
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}

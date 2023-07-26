@@ -1,0 +1,74 @@
+[
+    {
+     "tarifa": 0.33,
+     "consumo": 100
+    },
+    {
+      "tarifa": 1.07,
+      "consumo": 150
+    },
+    {
+      "tarifa": 1.43,
+      "consumo": 200
+    },
+    {
+      "tarifa": 2.46,
+      "consumo": 250
+    },
+    {
+      "tarifa": 3.00,
+      "consumo": 300
+    },
+    {
+      "tarifa": 4.00,
+      "consumo": 350
+    },
+    {
+      "tarifa": 5.00,
+      "consumo": 400
+    },
+    {
+      "tarifa": 6.00,
+      "consumo": 450
+    },
+    {
+      "tarifa": 7.00,
+      "consumo": 500
+    },
+    {
+      "tarifa": 9.20,
+      "consumo": 600
+    },
+    {
+      "tarifa": 9.45,
+      "consumo": 700
+    },
+    {
+      "tarifa": 9.85,
+      "consumo": 1000
+    },
+    {
+      "tarifa": 10.80,
+      "consumo": 1800
+    },
+    {
+      "tarifa": 11.80,
+      "consumo": 2600
+    },
+    {
+      "tarifa": 12.90,
+      "consumo": 3400
+    },
+    {
+      "tarifa": 13.95,
+      "consumo": 4200
+    },
+    {
+      "tarifa": 15.00,
+      "consumo": 5000
+    },
+    {
+      "tarifa": 20.00,
+      "consumo": "infinito"
+    }
+]
